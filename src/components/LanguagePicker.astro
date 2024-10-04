@@ -1,0 +1,11 @@
+---
+import { languages } from '../i18n/ui';
+---
+
+<ul class="flex space-x-2">
+	{Object.entries(languages).map(([lang, label]) => (
+		<li>
+			<a href={`/${lang}/`} class="hover:underline">{label}</a>
+		</li>
+	))}
+</ul>

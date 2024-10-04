@@ -1,0 +1,16 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="mb-12">
+	<h2 class="text-2xl font-bold mb-4">{t('documentaries.title')}</h2>
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+		<!-- Add your video content here -->
+		<div class="bg-primary text-accent p-4 rounded">Video 1</div>
+		<div class="bg-primary text-accent p-4 rounded">Video 2</div>
+		<div class="bg-primary text-accent p-4 rounded">Video 3</div>
+	</div>
+</section>

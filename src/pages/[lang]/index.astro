@@ -1,0 +1,30 @@
+---
+import { languages, defaultLang } from '../../i18n/ui';
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import DocumentariesSection from '../../components/DocumentariesSection.astro';
+import PhotographySection from '../../components/PhotographySection.astro';
+import CoursesSection from '../../components/CoursesSection.astro';
+
+export function getStaticPaths() {
+	return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as keyof typeof languages);
+---
+
+<Layout title={t('home.title')}>
+	<div class="relative">
+		<img src="/banner.jpeg" alt="Hero Banner" class="w-full h-auto" />
+		<div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white">
+			<h1 class="text-4xl font-bold mb-4">{t('home.welcome')}</h1>
+			<p class="text-xl text-center max-w-2xl">{t('home.subtitle')}</p>
+		</div>
+	</div>
+	<div class="container mx-auto mt-12">
+		<DocumentariesSection />
+		<PhotographySection />
+		<CoursesSection />
+	</div>
+</Layout>

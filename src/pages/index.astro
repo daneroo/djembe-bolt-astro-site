@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import DocumentariesSection from '../components/DocumentariesSection.astro';
+import PhotographySection from '../components/PhotographySection.astro';
+import CoursesSection from '../components/CoursesSection.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t('home.title')}>
+	<h1>{t('home.welcome')}</h1>
+	<DocumentariesSection />
+	<PhotographySection />
+	<CoursesSection />
+</Layout>
+
+<style>
+	h1 {
+		font-size: 3rem;
+		font-weight: 700;
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+</style>

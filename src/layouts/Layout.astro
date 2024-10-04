@@ -1,0 +1,48 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import LanguagePicker from '../components/LanguagePicker.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-secondary text-accent">
+		<header class="bg-primary p-4">
+			<div class="container mx-auto flex justify-between items-center">
+				<div class="flex items-center">
+					<img src="/logo.png" alt="Catherine Veilleux Logo" class="w-16 h-16 mr-4" />
+					<nav>
+						<ul class="flex space-x-4">
+							<li><a href={`/${lang}/`} class="hover:underline">{t('nav.home')}</a></li>
+							<li><a href={`/${lang}/about/`} class="hover:underline">{t('nav.about')}</a></li>
+						</ul>
+					</nav>
+				</div>
+				<LanguagePicker />
+			</div>
+		</header>
+		<main class="container mx-auto mt-8 px-4">
+			<slot />
+		</main>
+		<footer class="bg-primary text-accent mt-8 p-4">
+			<div class="container mx-auto">
+				<p>&copy; 2023 Catherine Veilleux</p>
+			</div>
+		</footer>
+	</body>
+</html>
